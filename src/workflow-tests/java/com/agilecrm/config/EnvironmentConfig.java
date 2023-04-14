@@ -9,7 +9,6 @@ import org.springframework.context.annotation.PropertySources;
 @ComponentScan(basePackages = { "com.agilecrm.*" })
 @PropertySources({
         @PropertySource("classpath:${env}.properties"),
-        @PropertySource("classpath:contacts.properties"),
         @PropertySource("classpath:company.properties")
 })
 public class EnvironmentConfig {

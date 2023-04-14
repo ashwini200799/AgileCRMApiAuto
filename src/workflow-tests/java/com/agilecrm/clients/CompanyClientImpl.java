@@ -68,5 +68,22 @@ public class CompanyClientImpl extends BaseClient implements CompanyClient{
     Assert.assertEquals(response.getStatusCode(),204);
   }
 
+  @Override
+  public Company getCompanyWithId(String id) {
+    Map<String,String> headers=new HashMap<>();
+    headers.put("Accept","application/json");
+    headers.put("Content-Type","application/json");
+
+
+    Command command= new Command.CommandBuilder(Company.class)
+            .withBaseURI(environment.getBaseUri())
+            .withBasicAuthScheme(getBasicAuthScheme())
+            .withBasePath(env+companyApi.getCompany().replace("{id}",id))
+            .withHeaders(headers)
+            .withMethod(HttpMethod.GET)
+            .build();
+    return (Company) command.execute();
+  }
+
 
 }

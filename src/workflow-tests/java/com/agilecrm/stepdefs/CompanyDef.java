@@ -1,6 +1,7 @@
 package com.agilecrm.stepdefs;
 
 import com.agilecrm.clients.CompanyClient;
+import com.agilecrm.config.EnvironmentConfig;
 import com.agilecrm.entity.common.Company;
 import com.agilecrm.entity.common.Property;
 import com.agilecrm.entity.response.CompanyListResponsePayload;
@@ -10,6 +11,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@ContextConfiguration(classes = {EnvironmentConfig.class})
 public class CompanyDef {
 
   @Autowired
@@ -69,6 +72,10 @@ public class CompanyDef {
     Assert.assertEquals(cname,property.getValue());
   }
 
+  @Then("I get created/updated company")
+  public void iGetCreatedCompany() {
+    recentCompany=companyClient.getCompanyWithId(String.valueOf(recentCompany.getId()));
+  }
 
   @Then("company should be updated with {string} {string}")
   public void companyShouldBeUpdatedWith(String field, String value) {

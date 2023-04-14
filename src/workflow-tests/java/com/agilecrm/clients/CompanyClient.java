@@ -16,5 +16,6 @@ public interface CompanyClient {
   public Company createCompany(Company company);
   public CompanyListResponsePayload getAllCompany();
   public void deleteCompany(String id);
+  public Company getCompanyWithId(String id);
 
 }
