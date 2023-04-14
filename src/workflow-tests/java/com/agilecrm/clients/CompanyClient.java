@@ -16,7 +16,5 @@ public interface CompanyClient {
   public Company createCompany(Company company);
   public CompanyListResponsePayload getAllCompany();
   public void deleteCompany(String id);
-  public Company getCompanyWithId(String id);
-  public Response executeRaw(HttpMethod httpMethod, Object body, String basePath, Map<String,String> headers);
-  public Company updateCompany(Company company);
+
 }

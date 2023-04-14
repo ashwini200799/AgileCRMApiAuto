@@ -62,10 +62,6 @@ public class CompanyDef {
     }
   }
 
-  @Then("I get created/updated company")
-  public void iGetCreatedCompany() {
-    recentCompany=companyClient.getCompanyWithId(String.valueOf(recentCompany.getId()));
-  }
 
   @Then("company should be created with name {string}")
   public void companyShouldBeCreatedWithName(String cname) {
@@ -73,18 +69,6 @@ public class CompanyDef {
     Assert.assertEquals(cname,property.getValue());
   }
 
-  @And("I update {string} of company as {string}")
-  public void iUpdateOfCompanyAs(String field, String value) {
-    Company c = recentCompany;
-    Property property=c.getProperties().stream().filter(prop->prop.getName().equals(field)).collect(Collectors.toList()).get(0);
-    c.getProperties().remove(property);
-    property.setValue(value);
-    c.getProperties().add(property);
-
-    Company response=companyClient.updateCompany(c);
-    System.out.println();
-
-  }
 
   @Then("company should be updated with {string} {string}")
   public void companyShouldBeUpdatedWith(String field, String value) {
